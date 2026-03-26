@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>¿Cuántos días faltan para tu cumpleaños?</title>
+
+  <style>
+    body { font-family: Arial; background: #f4f4f4; text-align: center; padding: 50px; }
+    .container { background: white; padding: 30px; border-radius: 10px; max-width: 400px; margin: auto; }
+    input, button { padding: 10px; margin: 10px; width: 80%; }
+    button { background: purple; color: white; border: none; }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Días para tu Cumpleaños</h1>
+
+  <p>Descubre cuántos días faltan para tu próximo cumpleaños.</p>
+
+  <input type="date" id="fecha">
+  <button onclick="calcularCumple()">Calcular</button>
+
+  <h2 id="resultado"></h2>
+
+  <h3>¿Cómo se calcula?</h3>
+  <p>Se compara tu fecha de nacimiento con la fecha actual para calcular los días restantes.</p>
+</div>
+
+<script>
+function calcularCumple() {
+  const fecha = document.getElementById("fecha").value;
+
+  if (!fecha) {
+    document.getElementById("resultado").innerText = "Introduce una fecha.";
+    return;
+  }
+
+  const hoy = new Date();
+  const nacimiento = new Date(fecha);
+
+  let proximo = new Date(hoy.getFullYear(), nacimiento.getMonth(), nacimiento.getDate());
+
+  if (proximo < hoy) {
+    proximo.setFullYear(hoy.getFullYear() + 1);
+  }
+
+  const dias = Math.ceil((proximo - hoy) / (1000 * 60 * 60 * 24));
+
+  document.getElementById("resultado").innerText = "Faltan " + dias + " días para tu cumpleaños.";
+}
+</script>
+
+</body>
+</html>
+<h2>Preguntas frecuentes</h2>
+
+<p><strong>¿Es precisa esta calculadora?</strong><br>
+Sí, calcula cuantos días faltan para tu cumpleaños o resultado de forma automática y precisa.</p>
+
+<p><strong>¿Puedo usarla gratis?</strong><br>
+Sí, es completamente gratuita.</p>
